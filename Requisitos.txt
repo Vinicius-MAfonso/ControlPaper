@@ -1,0 +1,17 @@
+Controle de ponto
+
+Descrição do projeto:
+O projeto visa controlar o ponto dos funcionários de uma empresa
+
+REQUISITOS: 
+	- Deve possuir a opção de cadastrar, excluir e editar funcionários
+	- Quando clicar no funcionário deve possuir a agenda dele 
+	- Deve possuir um botão para registrar a entrada e a saída dele naquele dia
+REGRAS DE NEGÓCIO:
+	- Deve registrar em um banco de dados
+	- Deve ser para voltado para o RH
+	- Se possível deve haver um botão para registrar cada funcionário em um arquivo separado
+ENTIDADES:
+	- Funcionario
+	- Passagem(ENTRADA/SAÍDA)
+	
