@@ -1,5 +1,8 @@
 package main;
 
+import controller.WorkerController;
+import java.util.List;
+import model.Worker;
 import view.MainScreen;
 
 public class ControlPaper {
