@@ -2,18 +2,16 @@ package view;
 
 import controller.PointController;
 import java.awt.Component;
-import java.util.Calendar;
 import model.Point;
-import model.Worker;
 
-public class AddPointFrame extends javax.swing.JFrame {
+public class EditPointFrame extends javax.swing.JFrame {
     Point point = null;
     PointController pointController = null;
-    Worker worker = null;
     String description = "Entrada";
-    public AddPointFrame(Component component, Worker worker) {
-        this.worker = worker;
+    public EditPointFrame(Component component, Point point) {
+        this.point = point;
         initComponents();
+        loadData();
         setLocationRelativeTo(component);
         setVisible(true);
     }
@@ -23,22 +21,22 @@ public class AddPointFrame extends javax.swing.JFrame {
 
         buttonGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitle = new javax.swing.JLabel();
         jRadioButtonIn = new javax.swing.JRadioButton();
         jRadioButtonOut = new javax.swing.JRadioButton();
         jRadioButtonLunch = new javax.swing.JRadioButton();
         jRadioButtonOther = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaOther = new javax.swing.JTextArea();
-        jLabelCreate = new javax.swing.JLabel();
+        jLabelSave = new javax.swing.JLabel();
         jLabelCancel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criar novo ponto");
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Criar novo ponto");
+        jLabelTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelTitle.setText("Editar ponto");
 
         buttonGroup.add(jRadioButtonIn);
         jRadioButtonIn.setSelected(true);
@@ -78,13 +76,13 @@ public class AddPointFrame extends javax.swing.JFrame {
         jTextAreaOther.setEnabled(false);
         jScrollPane1.setViewportView(jTextAreaOther);
 
-        jLabelCreate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabelCreate.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\add.png")); // NOI18N
-        jLabelCreate.setText("Criar");
-        jLabelCreate.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jLabelCreate.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelSave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelSave.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\add.png")); // NOI18N
+        jLabelSave.setText("Salvar");
+        jLabelSave.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabelSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelCreateMouseClicked(evt);
+                jLabelSaveMouseClicked(evt);
             }
         });
 
@@ -106,7 +104,7 @@ public class AddPointFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(jLabelTitle)
                             .addComponent(jRadioButtonIn)
                             .addComponent(jRadioButtonOut)
                             .addComponent(jRadioButtonLunch)
@@ -115,14 +113,14 @@ public class AddPointFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelCreate)))
+                        .addComponent(jLabelSave)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,7 +133,7 @@ public class AddPointFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCreate)
+                    .addComponent(jLabelSave)
                     .addComponent(jLabelCancel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -157,6 +155,7 @@ public class AddPointFrame extends javax.swing.JFrame {
     private void jRadioButtonOtherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonOtherMouseClicked
         jTextAreaOther.setEnabled(true);
         jTextAreaOther.setEditable(true);
+        System.out.println(jTextAreaOther.getText());
         description = jTextAreaOther.getText();
     }//GEN-LAST:event_jRadioButtonOtherMouseClicked
 
@@ -178,14 +177,13 @@ public class AddPointFrame extends javax.swing.JFrame {
         description = "Entrada";
     }//GEN-LAST:event_jRadioButtonInMouseClicked
 
-    private void jLabelCreateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCreateMouseClicked
-        point = new Point(Calendar.getInstance());
+    private void jLabelSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSaveMouseClicked
         pointController = new PointController();
-        point.setIdWorker(worker.getId());
+        point.setIdWorker(point.getIdWorker());
         point.setDescription(description);
-        pointController.save(point);
+        pointController.update(point);
         dispose();
-    }//GEN-LAST:event_jLabelCreateMouseClicked
+    }//GEN-LAST:event_jLabelSaveMouseClicked
 
     private void jLabelCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelMouseClicked
         dispose();
@@ -193,9 +191,9 @@ public class AddPointFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCancel;
-    private javax.swing.JLabel jLabelCreate;
+    private javax.swing.JLabel jLabelSave;
+    private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButtonIn;
     private javax.swing.JRadioButton jRadioButtonLunch;
@@ -204,4 +202,16 @@ public class AddPointFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaOther;
     // End of variables declaration//GEN-END:variables
+    private void loadData(){
+        String description = point.getDescription();
+        switch(description){
+            case "Almoço" -> jRadioButtonLunch.setSelected(true);
+            case "Saída" -> jRadioButtonOut.setSelected(true);
+            case "Entrada" -> jRadioButtonIn.setSelected(true);
+            default ->{
+                jRadioButtonOther.setSelected(true);
+                jTextAreaOther.setText(description);
+            }
+        }
+    }
 }

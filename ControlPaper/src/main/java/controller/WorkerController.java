@@ -29,9 +29,7 @@ public class WorkerController {
         }
     }
     public void update(Worker worker){
-        String sql = "UPDATE workers"
-                + "SET(name = ?, role = ?, shift = ?)"
-                + "WHERE id = ?";
+        String sql = "UPDATE workers SET name = ?, role = ?, shift = ? WHERE id = ?";
         Connection connection = null;
         PreparedStatement statement = null;
         try{
@@ -40,6 +38,7 @@ public class WorkerController {
             statement.setString(1, worker.getName());
             statement.setString(2, worker.getRole());
             statement.setString(3, worker.getShift());
+            statement.setInt(4, worker.getId());
             statement.execute();
         }catch(SQLException sqle){
             System.err.println("Erro ao atualizar: " + sqle);

@@ -146,6 +146,11 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelEditPoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelEditPoint.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\edit.png")); // NOI18N
         jLabelEditPoint.setToolTipText("Editar");
+        jLabelEditPoint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelEditPointMouseClicked(evt);
+            }
+        });
 
         jLabelDeletePoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDeletePoint.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\delete.png")); // NOI18N
@@ -183,6 +188,11 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelEditWorker.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\edit.png")); // NOI18N
         jLabelEditWorker.setToolTipText("Editar empregado");
         jLabelEditWorker.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelEditWorker.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelEditWorkerMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
@@ -190,21 +200,22 @@ public class MainScreen extends javax.swing.JFrame {
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jLabelWorker, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGap(119, 119, 119)
                         .addComponent(jLabelEditWorker)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelDeleteWorker)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelAddWorker, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPaneWorkers))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPaneWorkers, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPanePoints)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jLabelPoints)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addComponent(jLabelSearchDate)
                         .addGap(5, 5, 5)
                         .addComponent(jTextFieldDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,15 +223,14 @@ public class MainScreen extends javax.swing.JFrame {
                         .addComponent(jLabelUntil)
                         .addGap(5, 5, 5)
                         .addComponent(jTextFieldDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(154, 154, 154)
                         .addComponent(jLabelEditPoint)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelDeletePoint)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelAddPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPanePoints, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelAddPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -230,22 +240,20 @@ public class MainScreen extends javax.swing.JFrame {
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelWorker, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jLabelPoints)
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelUntil, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabelSearchDate, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jTextFieldDate1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDate2, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelSearch, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabelAddWorker)
-                        .addComponent(jLabelDeleteWorker)
-                        .addComponent(jLabelEditWorker))
-                    .addComponent(jLabelDeletePoint, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabelAddPoint, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabelEditPoint, javax.swing.GroupLayout.Alignment.CENTER))
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabelPoints)
+                    .addComponent(jLabelSearchDate)
+                    .addComponent(jTextFieldDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelUntil)
+                    .addComponent(jTextFieldDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelEditPoint)
+                    .addComponent(jLabelDeletePoint)
+                    .addComponent(jLabelAddPoint)
+                    .addComponent(jLabelAddWorker)
+                    .addComponent(jLabelDeleteWorker)
+                    .addComponent(jLabelEditWorker)
+                    .addComponent(jLabelWorker))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPanePoints, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
@@ -279,11 +287,13 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -408,6 +418,32 @@ public class MainScreen extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jLabelDeleteWorkerMouseClicked
+
+    private void jLabelEditWorkerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEditWorkerMouseClicked
+        int selectedIndex = jListWorkers.getSelectedIndex();
+        if(selectedIndex < 0){
+            JOptionPane.showMessageDialog(this, 
+                    "Selecione um empregado!", 
+                    "Erro ao editar", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+           Worker worker = (Worker) workersModel.get(selectedIndex);
+           ViewProfileFrame viewProfileFrame = new ViewProfileFrame(this, worker); 
+        }
+    }//GEN-LAST:event_jLabelEditWorkerMouseClicked
+
+    private void jLabelEditPointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEditPointMouseClicked
+        int selectedIndex = jTablePoints.getSelectedRow();
+        if(selectedIndex < 0){
+            JOptionPane.showMessageDialog(this, 
+                    "Selecione um ponto!", 
+                    "Erro ao editar", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+           Point point = pointsModel.getPoints().get(selectedIndex);
+           EditPointFrame editPointFrame = new EditPointFrame(this, point); 
+        }
+    }//GEN-LAST:event_jLabelEditPointMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelAddPoint;

@@ -25,12 +25,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanelContent" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanelContent" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanelContent" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="jPanelContent" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -106,23 +109,24 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabelWorker" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace pref="35" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                               <Component id="jLabelEditWorker" linkSize="3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabelDeleteWorker" linkSize="3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabelAddWorker" linkSize="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPaneWorkers" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneWorkers" min="-2" pref="386" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPanePoints" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabelPoints" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
                               <Component id="jLabelSearchDate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="jTextFieldDate1" min="-2" max="-2" attributes="0"/>
@@ -130,7 +134,7 @@
                               <Component id="jLabelUntil" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="jTextFieldDate2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelSearch" min="-2" pref="26" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                               <Component id="jLabelEditPoint" linkSize="3" min="-2" max="-2" attributes="0"/>
@@ -139,7 +143,6 @@
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelAddPoint" linkSize="3" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPanePoints" min="-2" pref="760" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -149,24 +152,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelWorker" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                              <Component id="jLabelPoints" alignment="2" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="2" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelUntil" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelSearchDate" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldDate1" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldDate2" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelSearch" alignment="2" min="-2" pref="24" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jLabelAddWorker" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelDeleteWorker" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelEditWorker" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jLabelPoints" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelSearchDate" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldDate1" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelUntil" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldDate2" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelSearch" alignment="2" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jLabelEditPoint" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelDeletePoint" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelAddPoint" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelEditPoint" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelAddWorker" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelDeleteWorker" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelEditWorker" linkSize="4" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelWorker" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -319,6 +318,9 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Editar"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelEditPointMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelDeletePoint">
               <Properties>
@@ -377,6 +379,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="Editar empregado"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelEditWorkerMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

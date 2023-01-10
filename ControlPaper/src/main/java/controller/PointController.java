@@ -31,9 +31,7 @@ public class PointController {
         }
     }
     public void update(Point point){
-        String sql = "UPDATE points"
-                + "SET(idWorker = ?,description = ?, date = ?, time = ?)"
-                + "WHERE id = ?";
+        String sql = "UPDATE points SET idWorker = ?, description = ?, date = ?, time = ? WHERE id = ?";
         PreparedStatement statement = null;
         Connection connection = null;
         try{
