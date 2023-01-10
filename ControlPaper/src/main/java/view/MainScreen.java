@@ -2,6 +2,7 @@ package view;
 
 import controller.PointController;
 import controller.WorkerController;
+import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Date;
@@ -12,10 +13,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Point;
 import model.Worker;
+import util.PointsTableModel;
 
 public class MainScreen extends javax.swing.JFrame {
     DefaultListModel workersModel;
-    DefaultListModel pointsModel;
+    PointsTableModel pointsModel;
     WorkerController workerController;
     PointController pointController;
     
@@ -26,7 +28,6 @@ public class MainScreen extends javax.swing.JFrame {
         decorate();
         setVisible(true);
         setLocationRelativeTo(null);
-        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,17 +41,19 @@ public class MainScreen extends javax.swing.JFrame {
         jListWorkers = new javax.swing.JList<>();
         jLabelWorker = new javax.swing.JLabel();
         jLabelAddWorker = new javax.swing.JLabel();
-        jScrollPanePoints = new javax.swing.JScrollPane();
-        jListPoints = new javax.swing.JList<>();
         jLabelAddPoint = new javax.swing.JLabel();
         jLabelPoints = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelSearchDate = new javax.swing.JLabel();
         jLabelSearch = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelUntil = new javax.swing.JLabel();
         jTextFieldDate1 = new javax.swing.JTextField();
         jTextFieldDate2 = new javax.swing.JTextField();
-        jLabelEdit = new javax.swing.JLabel();
-        jLabelDelete = new javax.swing.JLabel();
+        jLabelEditPoint = new javax.swing.JLabel();
+        jLabelDeletePoint = new javax.swing.JLabel();
+        jScrollPanePoints = new javax.swing.JScrollPane();
+        jTablePoints = new javax.swing.JTable();
+        jLabelDeleteWorker = new javax.swing.JLabel();
+        jLabelEditWorker = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(" Control Paper");
@@ -101,10 +104,6 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jListPoints.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jListPoints.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPanePoints.setViewportView(jListPoints);
-
         jLabelAddPoint.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelAddPoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelAddPoint.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\arrows.png")); // NOI18N
@@ -119,8 +118,8 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelPoints.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelPoints.setText("Pontos");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Pesquisar dia:");
+        jLabelSearchDate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelSearchDate.setText("Pesquisar dia:");
 
         jLabelSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSearch.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\search.png")); // NOI18N
@@ -131,31 +130,59 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("até");
+        jLabelUntil.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelUntil.setText("até");
 
         jTextFieldDate1.setColumns(8);
         jTextFieldDate1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldDate1.setToolTipText("dia/mês/ano");
-        jTextFieldDate1.setBorder(null);
+        jTextFieldDate1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jTextFieldDate2.setColumns(8);
         jTextFieldDate2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldDate2.setToolTipText("dia/mês/ano");
-        jTextFieldDate2.setBorder(null);
+        jTextFieldDate2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jLabelEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelEdit.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\edit.png")); // NOI18N
-        jLabelEdit.setToolTipText("Editar");
+        jLabelEditPoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelEditPoint.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\edit.png")); // NOI18N
+        jLabelEditPoint.setToolTipText("Editar");
 
-        jLabelDelete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelDelete.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\delete.png")); // NOI18N
-        jLabelDelete.setToolTipText("Excluir");
-        jLabelDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelDeletePoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelDeletePoint.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\delete.png")); // NOI18N
+        jLabelDeletePoint.setToolTipText("Excluir");
+        jLabelDeletePoint.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelDeleteMouseClicked(evt);
+                jLabelDeletePointMouseClicked(evt);
             }
         });
+
+        jTablePoints.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTablePoints.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTablePoints.setToolTipText("");
+        jTablePoints.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPanePoints.setViewportView(jTablePoints);
+
+        jLabelDeleteWorker.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelDeleteWorker.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\delete.png")); // NOI18N
+        jLabelDeleteWorker.setToolTipText("Deletar empregado");
+        jLabelDeleteWorker.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelDeleteWorker.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelDeleteWorkerMouseClicked(evt);
+            }
+        });
+
+        jLabelEditWorker.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelEditWorker.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\edit.png")); // NOI18N
+        jLabelEditWorker.setToolTipText("Editar empregado");
+        jLabelEditWorker.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
@@ -166,65 +193,66 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jLabelWorker, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelAddWorker, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPaneWorkers, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jLabelEditWorker)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelDeleteWorker)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelAddWorker, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPaneWorkers))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jLabelPoints)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelSearchDate)
                         .addGap(5, 5, 5)
                         .addComponent(jTextFieldDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel3)
+                        .addComponent(jLabelUntil)
                         .addGap(5, 5, 5)
                         .addComponent(jTextFieldDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelEdit)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabelDelete)
-                        .addGap(21, 21, 21)
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabelEditPoint)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelDeletePoint)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabelAddPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPanePoints, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPanePoints, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jPanelMainLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelAddPoint, jLabelDelete, jLabelEdit});
+        jPanelMainLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelAddPoint, jLabelAddWorker, jLabelDeletePoint, jLabelDeleteWorker, jLabelEditPoint, jLabelEditWorker});
 
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabelDelete)
-                            .addComponent(jLabelAddPoint)
-                            .addComponent(jLabelEdit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPaneWorkers)
-                            .addComponent(jScrollPanePoints, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanelMainLayout.createSequentialGroup()
+                    .addComponent(jLabelWorker, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jLabelPoints)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelAddWorker, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabelWorker, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabelPoints, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabelUntil, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabelSearchDate, javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jTextFieldDate1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                .addComponent(jTextFieldDate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(624, 624, 624))))
+                            .addComponent(jTextFieldDate2, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelSearch, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelAddWorker)
+                        .addComponent(jLabelDeleteWorker)
+                        .addComponent(jLabelEditWorker))
+                    .addComponent(jLabelDeletePoint, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabelAddPoint, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabelEditPoint, javax.swing.GroupLayout.Alignment.CENTER))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPanePoints, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneWorkers)))
         );
 
-        jPanelMainLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelAddPoint, jLabelDelete, jLabelEdit});
+        jPanelMainLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabelAddPoint, jLabelAddWorker, jLabelDeletePoint, jLabelDeleteWorker, jLabelEditPoint, jLabelEditWorker});
 
         javax.swing.GroupLayout jPanelContentLayout = new javax.swing.GroupLayout(jPanelContent);
         jPanelContent.setLayout(jPanelContentLayout);
@@ -263,8 +291,10 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jListWorkersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListWorkersMouseClicked
         int selectedIndex = jListWorkers.getSelectedIndex();
-        Worker worker = (Worker) workersModel.get(selectedIndex);
-        loadPoints(worker.getId());
+        if(!(selectedIndex < 0)){
+            Worker worker = (Worker) workersModel.get(selectedIndex);
+            loadPoints(worker.getId());
+        }
     }//GEN-LAST:event_jListWorkersMouseClicked
 
     private void jLabelAddWorkerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAddWorkerMouseClicked
@@ -276,77 +306,137 @@ public class MainScreen extends javax.swing.JFrame {
                loadWorkers();
             }
         });
-        
     }//GEN-LAST:event_jLabelAddWorkerMouseClicked
 
     private void jLabelAddPointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAddPointMouseClicked
         int selectedIndex = jListWorkers.getSelectedIndex();
-        Worker worker = (Worker) workersModel.get(selectedIndex);
-        AddPointFrame addPointFrame = new AddPointFrame(this, worker);
-        addPointFrame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e){
-                int selectedIndex = jListWorkers.getSelectedIndex();
-                Worker worker = (Worker) workersModel.get(selectedIndex);
-                loadPoints(worker.getId());
-            }
-        });
+        if(selectedIndex < 0){
+            JOptionPane.showMessageDialog(this, 
+                    "Selecione ou crie um empregado!", 
+                    "Erro ao criar ponto", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            Worker worker = (Worker) workersModel.get(selectedIndex);
+            AddPointFrame addPointFrame = new AddPointFrame(this, worker);
+            addPointFrame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e){
+                    int selectedIndex = jListWorkers.getSelectedIndex();
+                    Worker worker = (Worker) workersModel.get(selectedIndex);
+                    loadPoints(worker.getId());
+                }
+            });
+        }
+        
     }//GEN-LAST:event_jLabelAddPointMouseClicked
 
     private void jLabelSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSearchMouseClicked
         int selectedIndex = jListWorkers.getSelectedIndex();
-        Worker worker = (Worker) workersModel.get(selectedIndex);
-        DateFormat dateFormat = null;
-        Date date = null;
-        Date dateUntil = null;
-        try{
-            dateFormat = DateFormat.getDateInstance(DateFormat.SHORT); 
-            date = new Date(dateFormat.parse(jTextFieldDate1.getText()).getTime());
-            if(!(jTextFieldDate2.getText().isBlank() ||
-                    jTextFieldDate2.getText().isEmpty())){
-                dateUntil = new Date(dateFormat.parse(jTextFieldDate2.getText()).getTime());
-                loadPoints(worker.getId(), date, dateUntil);
-            }else{
-                loadPoints(worker.getId(), date);
-            }
-            
-        }catch(ParseException pe){
+        if(selectedIndex < 0){
             JOptionPane.showMessageDialog(this, 
-                    "A data deve estar no formato dia/mês/ano", 
-                    "Erro ao buscar", 
-                    JOptionPane.ERROR_MESSAGE);
+                    "Selecione um empregado!", 
+                    "Erro ao pesquisar", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            Worker worker = (Worker) workersModel.get(selectedIndex);
+            DateFormat dateFormat = null;
+            Date date = null;
+            Date dateUntil = null;
+            try{
+                dateFormat = DateFormat.getDateInstance(DateFormat.SHORT); 
+                date = new Date(dateFormat.parse(jTextFieldDate1.getText()).getTime());
+                if(!(jTextFieldDate2.getText().isBlank() ||
+                        jTextFieldDate2.getText().isEmpty())){
+                    dateUntil = new Date(dateFormat.parse(jTextFieldDate2.getText()).getTime());
+                    loadPoints(worker.getId(), date, dateUntil);
+                }else{
+                    loadPoints(worker.getId(), date);
+                }
+
+            }catch(ParseException pe){
+                JOptionPane.showMessageDialog(this, 
+                        "A data deve estar no formato dia/mês/ano", 
+                        "Erro ao buscar", 
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
+        
     }//GEN-LAST:event_jLabelSearchMouseClicked
 
-    private void jLabelDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDeleteMouseClicked
-        int selectedIndex = jListPoints.getSelectedIndex();
-        Point point = (Point) pointsModel.get(selectedIndex);
-        pointController.delete(point);
-        loadPoints(point.getId());
-    }//GEN-LAST:event_jLabelDeleteMouseClicked
+    private void jLabelDeletePointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDeletePointMouseClicked
+        int selectedIndex = jTablePoints.getSelectedRow();
+        if(selectedIndex < 0){
+            JOptionPane.showMessageDialog(this, 
+                    "Selecione um ponto!", 
+                    "Erro ao deletar", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            Point point = pointsModel.getPoints().get(selectedIndex);
+            pointController.delete(point);
+            Worker worker = (Worker) workersModel.get(0);
+            loadPoints(worker.getId());
+        }
+    }//GEN-LAST:event_jLabelDeletePointMouseClicked
+
+    private void jLabelDeleteWorkerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDeleteWorkerMouseClicked
+        int selectedIndex = jListWorkers.getSelectedIndex();
+        if(selectedIndex < 0){
+            JOptionPane.showMessageDialog(this, 
+                    "Selecione um empregado!", 
+                    "Erro ao deletar", 
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            Worker worker = (Worker) workersModel.get(selectedIndex);
+            int confirm = JOptionPane.showConfirmDialog(this, 
+                String.format("Deseja excluir o funcionário %s", 
+                        worker.getName()), 
+                "Excluir funcionário", 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+            if(confirm == 0){
+                List<Point> points = pointController.getAll(worker.getId());
+                for(Point currentlyPoint : points){
+                    pointController.delete(currentlyPoint);
+                }
+                workerController.delete(worker);
+            }
+            loadWorkers();
+            if(!workerController.getAll().isEmpty()){
+                worker = (Worker) workersModel.get(0);
+                jListWorkers.setSelectedIndex(0);
+                loadPoints(worker.getId());
+            }
+        }
+    }//GEN-LAST:event_jLabelDeleteWorkerMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelAddPoint;
     private javax.swing.JLabel jLabelAddWorker;
-    private javax.swing.JLabel jLabelDelete;
-    private javax.swing.JLabel jLabelEdit;
+    private javax.swing.JLabel jLabelDeletePoint;
+    private javax.swing.JLabel jLabelDeleteWorker;
+    private javax.swing.JLabel jLabelEditPoint;
+    private javax.swing.JLabel jLabelEditWorker;
     private javax.swing.JLabel jLabelPoints;
     private javax.swing.JLabel jLabelSearch;
+    private javax.swing.JLabel jLabelSearchDate;
     private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JLabel jLabelUntil;
     private javax.swing.JLabel jLabelWorker;
-    private javax.swing.JList<String> jListPoints;
     private javax.swing.JList<String> jListWorkers;
     private javax.swing.JPanel jPanelContent;
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JScrollPane jScrollPanePoints;
     private javax.swing.JScrollPane jScrollPaneWorkers;
+    private javax.swing.JTable jTablePoints;
     private javax.swing.JTextField jTextFieldDate1;
     private javax.swing.JTextField jTextFieldDate2;
     // End of variables declaration//GEN-END:variables
+    
     private void decorate(){
+       jListWorkers.setSelectedIndex(0);
+       jTablePoints.getTableHeader().setFont(new Font("Segoe UI",Font.PLAIN,14));
+       jTablePoints.setFont(new Font("Segoe UI",Font.PLAIN,15));
     }
     private void initControllers(){
         workerController = new WorkerController();
@@ -356,44 +446,39 @@ public class MainScreen extends javax.swing.JFrame {
         workersModel = new DefaultListModel();
         loadWorkers();
         
-        pointsModel = new DefaultListModel();
-        Worker selectedWorker = (Worker) workersModel.get(0);
-        loadPoints(selectedWorker.getId());
-        jListWorkers.setSelectedIndex(0);
+        pointsModel = new PointsTableModel();
+        jTablePoints.setModel(pointsModel);
+        if(!workerController.getAll().isEmpty()){
+            Worker worker = (Worker) workersModel.get(0);
+            loadPoints(worker.getId());
+        }
     }
     private void loadPoints(int idWorker){
         List<Point> points = pointController.getAll(idWorker);
-        pointsModel.clear();
-        for(Point currentPoint : points){
-            Point point = currentPoint;
-            pointsModel.addElement(point);
-        }
-        jListPoints.setModel(pointsModel);
+        pointsModel = new PointsTableModel(points);
+        jTablePoints.setModel(pointsModel);
+        System.gc();
     }
     private void loadPoints(int idWorker, Date date){
         List<Point> points = pointController.getAll(idWorker, date);
-        pointsModel.clear();
-        for(Point currentPoint : points){
-            Point point = currentPoint;
-            pointsModel.addElement(point);
-        }
-        jListPoints.setModel(pointsModel);
+        pointsModel = new PointsTableModel(points);
+        jTablePoints.setModel(pointsModel);
+        System.gc();
     }
     private void loadPoints(int idWorker, Date date, Date dateUntil){
         List<Point> points = pointController.getAll(idWorker, date, dateUntil);
-        pointsModel.clear();
-        for(Point currentPoint : points){
-            Point point = currentPoint;
-            pointsModel.addElement(point);
-        }
-        jListPoints.setModel(pointsModel);
+        pointsModel = new PointsTableModel(points);
+        jTablePoints.setModel(pointsModel);
+        System.gc();
     }
     private void loadWorkers(){
         List<Worker> workers = workerController.getAll();
         workersModel.clear();
-        for(Worker currentWorker : workers){
-            Worker worker = currentWorker;
-            workersModel.addElement(worker);
+        if(!workers.isEmpty()){
+                for(Worker currentWorker : workers){
+                Worker worker = currentWorker;
+                workersModel.addElement(worker);
+            }
         }
         jListWorkers.setModel(workersModel);
     }

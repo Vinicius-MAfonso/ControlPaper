@@ -3,6 +3,7 @@ package view;
 import controller.PointController;
 import java.awt.Component;
 import java.util.Calendar;
+import javax.swing.ButtonModel;
 import model.Point;
 import model.Worker;
 
@@ -157,6 +158,7 @@ public class AddPointFrame extends javax.swing.JFrame {
     private void jRadioButtonOtherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonOtherMouseClicked
         jTextAreaOther.setEnabled(true);
         jTextAreaOther.setEditable(true);
+        System.out.println(jTextAreaOther.getText());
         description = jTextAreaOther.getText();
     }//GEN-LAST:event_jRadioButtonOtherMouseClicked
 
