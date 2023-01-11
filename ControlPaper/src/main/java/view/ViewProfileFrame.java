@@ -2,7 +2,10 @@ package view;
 
 import controller.WorkerController;
 import java.awt.Component;
+import java.io.File;
+import java.io.FileWriter;
 import model.Worker;
+import util.PDFGenerator;
 
 public class ViewProfileFrame extends javax.swing.JFrame {
     Worker worker = null;
@@ -18,6 +21,7 @@ public class ViewProfileFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser = new javax.swing.JFileChooser();
         jPanelMain = new javax.swing.JPanel();
         jLabelTitle = new javax.swing.JLabel();
         jLabelFirstName = new javax.swing.JLabel();
@@ -29,7 +33,15 @@ public class ViewProfileFrame extends javax.swing.JFrame {
         jLabelLastName = new javax.swing.JLabel();
         jTextFieldLastName = new javax.swing.JTextField();
         jLabelSave = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelGenerateDoc = new javax.swing.JLabel();
+
+        jFileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        jFileChooser.setApproveButtonText("Salvar");
+        jFileChooser.setApproveButtonToolTipText("");
+        jFileChooser.setCurrentDirectory(new File("/home/me/Documents"));
+        jFileChooser.setDialogTitle("");
+        jFileChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        jFileChooser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar funcionário");
@@ -71,10 +83,15 @@ public class ViewProfileFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\contract.png")); // NOI18N
-        jLabel1.setText("Gerar relatório");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabelGenerateDoc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelGenerateDoc.setIcon(new javax.swing.ImageIcon("C:\\Users\\vinic\\OneDrive\\Documentos\\GitHub\\ControlPaper\\resources\\contract.png")); // NOI18N
+        jLabelGenerateDoc.setText("Gerar relatório");
+        jLabelGenerateDoc.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabelGenerateDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelGenerateDocMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
@@ -82,27 +99,33 @@ public class ViewProfileFrame extends javax.swing.JFrame {
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanelMainLayout.createSequentialGroup()
-                            .addComponent(jLabeShift)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1))
-                        .addGroup(jPanelMainLayout.createSequentialGroup()
-                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelRole)
-                                    .addComponent(jTextFieldFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                                    .addComponent(jLabelFirstName)
-                                    .addComponent(jTextFieldRole))
-                                .addComponent(jComboBoxShift, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelMainLayout.createSequentialGroup()
+                        .addComponent(jLabeShift)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelGenerateDoc))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelMainLayout.createSequentialGroup()
+                        .addComponent(jLabelTitle)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabelRole)
+                                .addComponent(jTextFieldFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                .addComponent(jLabelFirstName)
+                                .addComponent(jTextFieldRole))
+                            .addComponent(jComboBoxShift, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelMainLayout.createSequentialGroup()
                                 .addComponent(jLabelLastName)
-                                .addComponent(jLabelSave, javax.swing.GroupLayout.Alignment.TRAILING))))
-                    .addComponent(jLabelTitle))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                                .addGap(0, 11, Short.MAX_VALUE)
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldLastName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelSave, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                .addContainerGap())
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +137,7 @@ public class ViewProfileFrame extends javax.swing.JFrame {
                     .addComponent(jLabelLastName)
                     .addComponent(jLabelFirstName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -123,7 +146,7 @@ public class ViewProfileFrame extends javax.swing.JFrame {
                 .addComponent(jTextFieldRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabelGenerateDoc)
                     .addComponent(jLabeShift))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -137,13 +160,15 @@ public class ViewProfileFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -165,11 +190,25 @@ public class ViewProfileFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabelSaveMouseClicked
 
+    private void jLabelGenerateDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelGenerateDocMouseClicked
+        PDFGenerator pdfGen = null;
+        
+        int option = jFileChooser.showSaveDialog(this);
+        if (option == jFileChooser.APPROVE_OPTION) {
+            pdfGen = new PDFGenerator(worker);
+            pdfGen.setPath(jFileChooser.getSelectedFile().toPath());
+            pdfGen.build();
+            if(pdfGen.save())
+                System.out.println("Great Job!");
+        }
+    }//GEN-LAST:event_jLabelGenerateDocMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBoxShift;
+    private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabeShift;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFirstName;
+    private javax.swing.JLabel jLabelGenerateDoc;
     private javax.swing.JLabel jLabelLastName;
     private javax.swing.JLabel jLabelRole;
     private javax.swing.JLabel jLabelSave;
