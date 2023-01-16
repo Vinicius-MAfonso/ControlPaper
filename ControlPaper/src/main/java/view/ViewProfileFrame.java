@@ -195,11 +195,8 @@ public class ViewProfileFrame extends javax.swing.JFrame {
         
         int option = jFileChooser.showSaveDialog(this);
         if (option == jFileChooser.APPROVE_OPTION) {
-            pdfGen = new PDFGenerator(worker);
-            pdfGen.setPath(jFileChooser.getSelectedFile().toPath());
+            pdfGen = new PDFGenerator(worker,jFileChooser.getSelectedFile());
             pdfGen.build();
-            if(pdfGen.save())
-                System.out.println("Great Job!");
         }
     }//GEN-LAST:event_jLabelGenerateDocMouseClicked
 
